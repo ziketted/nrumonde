@@ -10,8 +10,8 @@ class Agent extends Model
 {
 
     use HasFactory, SoftDeletes;
-    protected $fillable = ['id','numero','nom','sexe','date_naissance','lieu_naissance','email'
-                        ,'phone','etat_civil','academique','niveau','numeroCitoyannete','certificat'
+    protected $fillable = ['id','numero','nom','sexe','date','lieu_naissance','email'
+                        ,'phone','etat_civil','academique','niveau','numerocitoyannete','certificat'
                         ,'nationalite','ville','commune','adresse','user_id'];
 
     public function user(){

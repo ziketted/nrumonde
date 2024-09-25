@@ -146,8 +146,8 @@
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="/operation/CDF/">Agent</a></li>
-                                            <li><a href="/operation/USD/">Stagiaire</a></li>
+                                            <li><a href="{{route('agent.create')}}">Ajouter un agent</a></li>
+                                            <li><a href="{{route('agent.index')}}">Listes agents</a></li>
                                         </ul>
                                     </li>
                                 </ul>

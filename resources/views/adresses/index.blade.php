@@ -297,8 +297,8 @@
                                         <th>#</th>
                                         <th>Region</th>
                                         <th>Sous-region</th>
-                                        <th>Ville</th>
                                         <th>Pays</th>
+                                        <th>Ville</th>
                                     </tr>
                                 </thead>
 
