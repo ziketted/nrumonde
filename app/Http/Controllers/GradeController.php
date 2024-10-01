@@ -6,61 +6,67 @@ use App\Models\Grade;
 use App\Http\Requests\StoreGradeRequest;
 use App\Http\Requests\UpdateGradeRequest;
 
+use Illuminate\Http\Client\Request;
+use Illuminate\Support\Facades\Auth;
+
 class GradeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+  // Affiche la liste des grades
+  public function index()
+  {
+      $fonctions = Grade::all();
+      return view('grade.index', compact('fonctions'));
+      
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+  // Affiche le formulaire pour créer un grade
+  public function create()
+  {
+      return view('grade.create');
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreGradeRequest $request)
-    {
-        //
-    }
+  // Enregistre un nouveau grade dans la base de données
+  public function store(Request $request)
+  {
+      // Validation des données
+     dd('kqsj');
+  // Affiche un grade spécifique
+  }
+  public function show(Grade $grade)
+  {
+      return view('grade.show', compact('grade'));
+  }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Grade $grade)
-    {
-        //
-    }
+  // Affiche le formulaire pour éditer un grade
+  public function edit(Grade $grade)
+  {
+      return view('grade.edit', compact('grade'));
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Grade $grade)
-    {
-        //
-    }
+  // Met à jour un grade dans la base de données
+  public function update(Request $request, Grade $grade)
+  {
+      // Validation des données
+      $request->validate([
+          'type' => 'required|string|max:255',
+          'fonction' => 'required|string|max:255',
+          'description' => 'nullable|string',
+          'user_id' => 'required|exists:users,id',
+      ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateGradeRequest $request, Grade $grade)
-    {
-        //
-    }
+      // Mise à jour du grade
+      $grade->update($request->all());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Grade $grade)
-    {
-        //
-    }
+      // Redirection après succès
+      return redirect()->route('grade1.index')->with('success', 'Grade mis à jour avec succès');
+  }
+
+  // Supprime un grade de la base de données
+  public function destroy(Grade $grade)
+  {
+      $grade->delete();
+
+      // Redirection après suppression
+      return redirect()->route('grade.index')->with('success', 'Grade supprimé avec succès');
+  }
 }

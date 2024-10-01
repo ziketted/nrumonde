@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdresseController;
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\GradeController;
 use App\Models\Adresse;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,21 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/grades', [GradeController::class, 'index'])->name('grade.index');
+    Route::get('/grade_create', [GradeController::class, 'create'])->name('grade.create');
+    Route::get('/grade/{id}', [GradeController::class, 'show'])->name('grade.show');
+    Route::get('/grade/edit', [GradeController::class, 'edit'])->name('grade.edit');
+    Route::post('/grade/store', [GradeController::class, 'store'])->name('grade.store');
+    Route::post('/grade/update', [GradeController::class, 'update'])->name('grade.update');
+    Route::delete('/grade/delete', [AgentController::class, 'destroy'])->name('grade.destroy');
+
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
     Route::get('/agents', [AgentController::class, 'index'])->name('agent.index');
     Route::get('/agent_create', [AgentController::class, 'create'])->name('agent.create');
     Route::get('/agent/{id}', [AgentController::class, 'show'])->name('agent.show');
@@ -41,6 +57,7 @@ Route::middleware([
     Route::delete('/agent/delete', [AgentController::class, 'destroy'])->name('agent.destroy');
 
 });
+
 
 Route::middleware([
     'auth:sanctum',

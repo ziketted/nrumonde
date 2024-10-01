@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Grade extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = ['id','type','fonction','descrption','user_id'];
+    protected $fillable = ['id','grade','fonction','descrption','user_id'];
     public function user(){
         return $this->belongsTo(User::class);
     }

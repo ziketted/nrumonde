@@ -164,7 +164,7 @@
                                             <li><a href="{{ route('adresse.index') }}">Adresses</a></li>
                                             <li><a href="{{-- {{ route('compte.index') }} --}}">Catégories</a></li>
                                             <li><a href="{{-- {{ route('compte.index') }} --}}">Structures</a></li>
-                                            <li><a href="{{-- {{ route('compte.index') }} --}}">Fonctions</a></li>
+                                            <li><a href="{{ route('grade.index') }}">Fonctions</a></li>
                                             <li><a href="{{-- {{ route('compte.index') }} --}}">Formations</a></li>
 
                                             <li><a href="/Taux">Taux</a></li>
