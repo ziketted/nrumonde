@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Agent;
@@ -7,6 +8,7 @@ use App\Http\Requests\StoreAgentRequest;
 use App\Http\Requests\UpdateAgentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AgentController extends Controller
 {
@@ -16,8 +18,8 @@ class AgentController extends Controller
     public function index()
     {
         //
-        $agents= Agent::all();
-        return view('agents.index', ['agents'=>$agents]);
+        $agents = Agent::all();
+        return view('agents.index', ['agents' => $agents]);
     }
 
     /**
@@ -38,11 +40,13 @@ class AgentController extends Controller
     {
         //
         // Validation des données
+
+
         $request->validate([
             'numero' => 'required|unique:agents,numero',
             'nom' => 'required|string|max:255',
             'sexe' => 'required',
-            'date' => 'required|date|after_or_equal:2018-12-31',
+            'date' => 'required|date',
             'lieu_naissance' => 'required|string|max:255',
             'email' => 'required|email|unique:agents,email',
             'phone' => 'required|string|max:15',
@@ -60,15 +64,17 @@ class AgentController extends Controller
 
         Agent::create(array_merge($request->all(), ['user_id' => Auth::id()]));
         return redirect()->route('agent.index')->with('success', 'Agent ajouté avec succès.');
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Agent $agent)
+    public function show($idEncrypt)
     {
         //
+        $id = decrypt($idEncrypt);
+        $agent = Agent::find($id);
+        return view('agents.show', ['agent' => $agent]);
     }
 
     /**
@@ -93,5 +99,41 @@ class AgentController extends Controller
     public function destroy(Agent $agent)
     {
         //
+    }
+
+
+    public function updateProfilePhoto(Request $request, $id)
+    {
+
+
+        // Récupérer l'agent
+        $agent = Agent::findOrFail($id);
+
+        // Vérifier si un fichier est envoyé
+
+        if ($request->hasFile('profile_photo_path') && $request->file('profile_photo_path')->isValid()) {
+            // Supprimer l'ancienne photo si elle existe
+            /* if ($agent->profile_photo_path && Storage::disk('public')->exists($agent->profile_photo_path)) {
+                Storage::disk('public')->delete($agent->profile_photo_path);
+            } */
+
+            // Récupérer le fichier et générer un nom unique
+            $file = $request->file('profile_photo_path');
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // Enregistrer le fichier dans 'profile_photos' du disque public
+            $path = $file->storeAs('profile_photos', $fileName, 'public');
+
+            // Mettre à jour le chemin dans la base de données
+            $agent->profile_photo_path = $path;
+            $agent->save();
+        } else {
+
+            return back()->with('error', 'Aucun fichier valide trouvé.');
+
+        }
+
+
+        return back()->with('success', 'Photo de profil mise à jour avec succès.');
     }
 }

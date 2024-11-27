@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Caisse</title>
+    <title>Nrunmonde</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta content="Admin Dashboard" name="description" />
     <meta content="ThemeDesign" name="author" />
@@ -92,14 +92,14 @@
 
                                             <a href="route('logout')" onclick="event.preventDefault();
                                                             this.closest('form').submit();" class="dropdown-item">
-                                                {{ __('Log Out') }}
+                                                {{ __('Deconnexion') }}
                                             </a>
                                         </form>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li class="menu-item dropdown notification-list list-inline-item">
+                          {{--   <li class="menu-item dropdown notification-list list-inline-item">
                                 <!-- Mobile menu toggle-->
                                 <a class="navbar-toggle nav-link">
                                     <div class="lines">
@@ -109,7 +109,7 @@
                                     </div>
                                 </a>
                                 <!-- End mobile menu toggle-->
-                            </li>
+                            </li> --}}
 
                         </ul>
 
@@ -131,48 +131,40 @@
 
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
-                            <li class="has-submenu">
-                                <a href="{{route('dashboard')}}"><i class="ti-home"></i> Tableau de bord</a>
+                            <li class="has-submenu {{ Request::is('dashboard') ? 'active' : '' }}">
+                                <a href="{{ route('dashboard') }}"><i class="ti-home"></i> Tableau de bord</a>
                             </li>
-                             <li class="has-submenu">
-                                <a href="{{-- {{ route('') }} --}}"><i class="ti-panel"></i> Affectations</a>
+                            <li class="has-submenu {{ Request::is('affectations') ? 'active' : '' }}">
+                                <a href="#"><i class="ti-panel"></i> Affectations</a>
                             </li>
-                            <li class="has-submenu">
-                                <a href="{{-- {{route('operation.rapport')}} --}}"><i class="ti-briefcase"></i> Rapports </a>
+                            <li class="has-submenu {{ Request::is('rapports') ? 'active' : '' }}">
+                                <a href="#"><i class="ti-briefcase"></i> Rapports </a>
                             </li>
-
-                            <li class="has-submenu">
+                            <li class="has-submenu {{ Request::is('agents/*') ? 'active' : '' }}">
                                 <a href="#"><i class="ti-files"></i> Agents </a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                            <li><a href="{{route('agent.create')}}">Ajouter un agent</a></li>
-                                            <li><a href="{{route('agent.index')}}">Listes agents</a></li>
+                                            <li><a href="{{ route('agent.create') }}">Ajouter un agent</a></li>
+                                            <li><a href="{{ route('agent.index') }}">Listes agents</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-
-
-                            <li class="has-submenu">
-                                <a href="#"><i class="ti-settings"></i> Confirugations <i
-                                        class="mdi mdi-chevron-down mdi-drop"></i></a>
+                            <li class="has-submenu {{ Request::is('configurations/*') ? 'active' : '' }}">
+                                <a href="#"><i class="ti-settings"></i> Configurations <i class="mdi mdi-chevron-down mdi-drop"></i></a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                           {{--  <li><a href="{{ route('centre.index') }}">Centre D'intérêt</a></li> --}}
                                             <li><a href="{{ route('adresse.index') }}">Adresses</a></li>
-                                            <li><a href="{{-- {{ route('compte.index') }} --}}">Catégories</a></li>
-                                            <li><a href="{{-- {{ route('compte.index') }} --}}">Structures</a></li>
+                                            <li><a href="#">Catégories</a></li>
+                                            <li><a href="#">Structures</a></li>
                                             <li><a href="{{ route('grade.index') }}">Fonctions</a></li>
-                                            <li><a href="{{-- {{ route('compte.index') }} --}}">Formations</a></li>
-
-                                            <li><a href="/Taux">Taux</a></li>
+                                            <li><a href="#">Formations</a></li>
                                         </ul>
                                     </li>
                                 </ul>
                             </li>
-
                         </ul>
                         <!-- End navigation menu -->
                     </div>

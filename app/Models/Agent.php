@@ -12,7 +12,7 @@ class Agent extends Model
     use HasFactory, SoftDeletes;
     protected $fillable = ['id','numero','nom','sexe','date','lieu_naissance','email'
                         ,'phone','etat_civil','academique','niveau','numerocitoyannete','certificat'
-                        ,'nationalite','ville','commune','adresse','user_id'];
+                        ,'nationalite','ville','commune','adresse','profile_photo_path','is_active','user_id'];
 
     public function user(){
         return $this->belongsTo(User::class);

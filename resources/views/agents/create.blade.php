@@ -29,334 +29,201 @@
                                 <div class="m-t-20">
                                     <form action="{{ route('agent.store') }}" method="post">
                                         @csrf
+
+                                        <!-- Numéro Agent -->
                                         <div class="form-group">
                                             <label>Numéro Agent</label>
                                             <div>
-                                                <input type="text" name="numero" class="form-control" required parsley-type=""
-                                                    placeholder="Quelle sous-région ?" />
+                                                <input type="text" name="numero" class="form-control" value="{{ old('numero') }}" required placeholder="Quelle sous-région ?" />
+                                                @error('numero')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Nom complet -->
                                         <div class="form-group">
                                             <label>Nom complet</label>
                                             <div>
-                                                <input type="text" name="nom" class="form-control" required parsley-type=""
-                                                    placeholder="Saisissez le nom complet." />
+                                                <input type="text" name="nom" class="form-control" value="{{ old('nom') }}" required placeholder="Saisissez le nom complet." />
+                                                @error('nom')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Sexe -->
                                         <div class="form-group">
-                                            <label>Sexe </label>
-                                            <select class="form-control select2" name="sexe" id="country" style="width: 100%;">
-                                                <option value="" disabled selected>Selectionne le sexe</option>
-                                                <option value="Femminin">Femminin</option>
-                                                <option value="Masculin">Masculin</option>
+                                            <label>Sexe</label>
+                                            <select class="form-control select2" name="sexe" style="width: 100%;">
+                                                <option value="" disabled {{ old('sexe') == '' ? 'selected' : '' }}>Sélectionne le sexe</option>
+                                                <option value="Féminin" {{ old('sexe') == 'Féminin' ? 'selected' : '' }}>Féminin</option>
+                                                <option value="Masculin" {{ old('sexe') == 'Masculin' ? 'selected' : '' }}>Masculin</option>
                                             </select>
+                                            @error('sexe')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
+
+                                        <!-- Date de naissance -->
                                         <div class="form-group">
                                             <label>Date de naissance</label>
                                             <div>
-                                                <input type="date" name="date" class="form-control" required parsley-type=""
-                                                    placeholder="" />
+                                                <input type="date" name="date" class="form-control" value="{{ old('date') }}" required />
+                                                @error('date')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Lieu de naissance -->
                                         <div class="form-group">
                                             <label>Lieu de naissance</label>
                                             <div>
-                                                <input type="text" name="lieu_naissance" class="form-control" required parsley-type=""
-                                                    placeholder="" />
+                                                <input type="text" name="lieu_naissance" class="form-control" value="{{ old('lieu_naissance') }}" required />
+                                                @error('lieu_naissance')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Email -->
                                         <div class="form-group">
                                             <label>E-mail</label>
                                             <div>
-                                                <input type="email" name="email" class="form-control" required parsley-type=""
-                                                    placeholder="Votre adresse E-mail" />
+                                                <input type="email" name="email" class="form-control" value="{{ old('email') }}" required placeholder="Votre adresse E-mail" />
+                                                @error('email')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Téléphone -->
                                         <div class="form-group">
                                             <label>Téléphone</label>
                                             <div>
-                                                <input type="text" name="phone" class="form-control" required parsley-type=""
-                                                    placeholder="Votre numéro de téléphone" />
+                                                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" required placeholder="Votre numéro de téléphone" />
+                                                @error('phone')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Etat civil -->
                                         <div class="form-group">
-                                            <label>Etat civil </label>
-                                            <select class="form-control select2" name="etat_civil" id="country" style="width: 100%;">
-                                                <option value="" disabled selected>Selectionner votre etat civil</option>
-                                                <option value="Célibataire">Célibataire</option>
-                                                <option value="Marié">Marié</option>
+                                            <label>Etat civil</label>
+                                            <select class="form-control select2" name="etat_civil" style="width: 100%;">
+                                                <option value="" disabled {{ old('etat_civil') == '' ? 'selected' : '' }}>Sélectionner votre état civil</option>
+                                                <option value="Célibataire" {{ old('etat_civil') == 'Célibataire' ? 'selected' : '' }}>Célibataire</option>
+                                                <option value="Marié" {{ old('etat_civil') == 'Marié' ? 'selected' : '' }}>Marié</option>
                                             </select>
+                                            @error('etat_civil')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
+                                        <!-- Niveau -->
                                         <div class="form-group">
                                             <label>Niveau</label>
                                             <div>
-                                                <input type="text" name="niveau" class="form-control" required parsley-type=""
-                                                    placeholder="Votre niveau " />
+                                                <input type="text" name="niveau" class="form-control" value="{{ old('niveau') }}" required placeholder="Votre niveau" />
+                                                @error('niveau')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
 
+                                        <!-- Académique -->
                                         <div class="form-group">
                                             <label>Académique</label>
                                             <div>
-                                                <input type="text" name="academique" class="form-control" required parsley-type=""
-                                                    placeholder="Votre niveau académique" />
+                                                <input type="text" name="academique" class="form-control" value="{{ old('academique') }}" required placeholder="Votre niveau académique" />
+                                                @error('academique')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
 
+                                        <!-- Numéro de citoyenneté -->
                                         <div class="form-group">
                                             <label>Numéro de citoyenneté</label>
                                             <div>
-                                                <input type="text" name="numerocitoyannete" class="form-control" required parsley-type=""
-                                                    placeholder="Votre numéro de citoyenneté" />
+                                                <input type="text" name="numerocitoyannete" class="form-control" value="{{ old('numerocitoyannete') }}" required placeholder="Votre numéro de citoyenneté" />
+                                                @error('numerocitoyannete')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Certificat -->
                                         <div class="form-group">
-                                            <label>certificat</label>
+                                            <label>Certificat</label>
                                             <div>
-                                                <input type="text" name="certificat" class="form-control" required parsley-type=""
-                                                    placeholder="Votre niveau académique" />
+                                                <input type="text" name="certificat" class="form-control" value="{{ old('certificat') }}" required placeholder="Votre certificat" />
+                                                @error('certificat')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
 
-
+                                        <!-- Nationalité -->
                                         <div class="form-group">
-                                            <label>Nationalité </label>
-                                            <select class="form-control country-select" name="nationalite" id="country" style="width: 100%;"id="adresseForm">
-                                                <option value="">Select a country</option>
-                                                <option value="Afghanistan">Afghanistan</option>
-                                                <option value="Albania">Albania</option>
-                                                <option value="Algeria">Algeria</option>
-                                                <option value="Andorra">Andorra</option>
-                                                <option value="Angola">Angola</option>
-                                                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
-                                                <option value="Argentina">Argentina</option>
-                                                <option value="Armenia">Armenia</option>
-                                                <option value="Australia">Australia</option>
-                                                <option value="Austria">Austria</option>
-                                                <option value="Azerbaijan">Azerbaijan</option>
-                                                <option value="Bahamas">Bahamas</option>
-                                                <option value="Bahrain">Bahrain</option>
-                                                <option value="Bangladesh">Bangladesh</option>
-                                                <option value="Barbados">Barbados</option>
-                                                <option value="Belarus">Belarus</option>
-                                                <option value="Belgium">Belgium</option>
-                                                <option value="Belize">Belize</option>
-                                                <option value="Benin">Benin</option>
-                                                <option value="Bhutan">Bhutan</option>
-                                                <option value="Bolivia">Bolivia</option>
-                                                <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
-                                                <option value="Botswana">Botswana</option>
-                                                <option value="Brazil">Brazil</option>
-                                                <option value="Brunei">Brunei</option>
-                                                <option value="Bulgaria">Bulgaria</option>
-                                                <option value="Burkina Faso">Burkina Faso</option>
-                                                <option value="Burundi">Burundi</option>
-                                                <option value="Cabo Verde">Cabo Verde</option>
-                                                <option value="Cambodia">Cambodia</option>
-                                                <option value="Cameroon">Cameroon</option>
-                                                <option value="Canada">Canada</option>
-                                                <option value="Central African Republic">Central African Republic</option>
-                                                <option value="Chad">Chad</option>
-                                                <option value="Chile">Chile</option>
-                                                <option value="China">China</option>
-                                                <option value="Colombia">Colombia</option>
-                                                <option value="Comoros">Comoros</option>
-                                                <option value="Congo, Democratic Republic of the">Congo, Democratic Republic of the</option>
-                                                <option value="Congo, Republic of the">Congo, Republic of the</option>
-                                                <option value="Costa Rica">Costa Rica</option>
-                                                <option value="Croatia">Croatia</option>
-                                                <option value="Cuba">Cuba</option>
-                                                <option value="Cyprus">Cyprus</option>
-                                                <option value="Czech Republic">Czech Republic</option>
-                                                <option value="Denmark">Denmark</option>
-                                                <option value="Djibouti">Djibouti</option>
-                                                <option value="Dominica">Dominica</option>
-                                                <option value="Dominican Republic">Dominican Republic</option>
-                                                <option value="Ecuador">Ecuador</option>
-                                                <option value="Egypt">Egypt</option>
-                                                <option value="El Salvador">El Salvador</option>
-                                                <option value="Equatorial Guinea">Equatorial Guinea</option>
-                                                <option value="Eritrea">Eritrea</option>
-                                                <option value="Estonia">Estonia</option>
-                                                <option value="Eswatini">Eswatini</option>
-                                                <option value="Ethiopia">Ethiopia</option>
-                                                <option value="Fiji">Fiji</option>
-                                                <option value="Finland">Finland</option>
-                                                <option value="France">France</option>
-                                                <option value="Gabon">Gabon</option>
-                                                <option value="Gambia">Gambia</option>
-                                                <option value="Georgia">Georgia</option>
-                                                <option value="Germany">Germany</option>
-                                                <option value="Ghana">Ghana</option>
-                                                <option value="Greece">Greece</option>
-                                                <option value="Grenada">Grenada</option>
-                                                <option value="Guatemala">Guatemala</option>
-                                                <option value="Guinea">Guinea</option>
-                                                <option value="Guinea-Bissau">Guinea-Bissau</option>
-                                                <option value="Guyana">Guyana</option>
-                                                <option value="Haiti">Haiti</option>
-                                                <option value="Honduras">Honduras</option>
-                                                <option value="Hungary">Hungary</option>
-                                                <option value="Iceland">Iceland</option>
-                                                <option value="India">India</option>
-                                                <option value="Indonesia">Indonesia</option>
-                                                <option value="Iran">Iran</option>
-                                                <option value="Iraq">Iraq</option>
-                                                <option value="Ireland">Ireland</option>
-                                                <option value="Israel">Israel</option>
-                                                <option value="Italy">Italy</option>
-                                                <option value="Jamaica">Jamaica</option>
-                                                <option value="Japan">Japan</option>
-                                                <option value="Jordan">Jordan</option>
-                                                <option value="Kazakhstan">Kazakhstan</option>
-                                                <option value="Kenya">Kenya</option>
-                                                <option value="Kiribati">Kiribati</option>
-                                                <option value="Korea, North">Korea, North</option>
-                                                <option value="Korea, South">Korea, South</option>
-                                                <option value="Kosovo">Kosovo</option>
-                                                <option value="Kuwait">Kuwait</option>
-                                                <option value="Kyrgyzstan">Kyrgyzstan</option>
-                                                <option value="Laos">Laos</option>
-                                                <option value="Latvia">Latvia</option>
-                                                <option value="Lebanon">Lebanon</option>
-                                                <option value="Lesotho">Lesotho</option>
-                                                <option value="Liberia">Liberia</option>
-                                                <option value="Libya">Libya</option>
-                                                <option value="Liechtenstein">Liechtenstein</option>
-                                                <option value="Lithuania">Lithuania</option>
-                                                <option value="Luxembourg">Luxembourg</option>
-                                                <option value="Madagascar">Madagascar</option>
-                                                <option value="Malawi">Malawi</option>
-                                                <option value="Malaysia">Malaysia</option>
-                                                <option value="Maldives">Maldives</option>
-                                                <option value="Mali">Mali</option>
-                                                <option value="Malta">Malta</option>
-                                                <option value="Marshall Islands">Marshall Islands</option>
-                                                <option value="Mauritania">Mauritania</option>
-                                                <option value="Mauritius">Mauritius</option>
-                                                <option value="Mexico">Mexico</option>
-                                                <option value="Micronesia">Micronesia</option>
-                                                <option value="Moldova">Moldova</option>
-                                                <option value="Monaco">Monaco</option>
-                                                <option value="Mongolia">Mongolia</option>
-                                                <option value="Montenegro">Montenegro</option>
-                                                <option value="Morocco">Morocco</option>
-                                                <option value="Mozambique">Mozambique</option>
-                                                <option value="Myanmar">Myanmar</option>
-                                                <option value="Namibia">Namibia</option>
-                                                <option value="Nauru">Nauru</option>
-                                                <option value="Nepal">Nepal</option>
-                                                <option value="Netherlands">Netherlands</option>
-                                                <option value="New Zealand">New Zealand</option>
-                                                <option value="Nicaragua">Nicaragua</option>
-                                                <option value="Niger">Niger</option>
-                                                <option value="Nigeria">Nigeria</option>
-                                                <option value="North Macedonia">North Macedonia</option>
-                                                <option value="Norway">Norway</option>
-                                                <option value="Oman">Oman</option>
-                                                <option value="Pakistan">Pakistan</option>
-                                                <option value="Palau">Palau</option>
-                                                <option value="Panama">Panama</option>
-                                                <option value="Papua New Guinea">Papua New Guinea</option>
-                                                <option value="Paraguay">Paraguay</option>
-                                                <option value="Peru">Peru</option>
-                                                <option value="Philippines">Philippines</option>
-                                                <option value="Poland">Poland</option>
-                                                <option value="Portugal">Portugal</option>
-                                                <option value="Qatar">Qatar</option>
-                                                <option value="Romania">Romania</option>
-                                                <option value="Russia">Russia</option>
-                                                <option value="Rwanda">Rwanda</option>
-                                                <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
-                                                <option value="Saint Lucia">Saint Lucia</option>
-                                                <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
-                                                <option value="Samoa">Samoa</option>
-                                                <option value="San Marino">San Marino</option>
-                                                <option value="Sao Tome and Principe">Sao Tome and Principe</option>
-                                                <option value="Saudi Arabia">Saudi Arabia</option>
-                                                <option value="Senegal">Senegal</option>
-                                                <option value="Serbia">Serbia</option>
-                                                <option value="Seychelles">Seychelles</option>
-                                                <option value="Sierra Leone">Sierra Leone</option>
-                                                <option value="Singapore">Singapore</option>
-                                                <option value="Slovakia">Slovakia</option>
-                                                <option value="Slovenia">Slovenia</option>
-                                                <option value="Solomon Islands">Solomon Islands</option>
-                                                <option value="Somalia">Somalia</option>
-                                                <option value="South Africa">South Africa</option>
-                                                <option value="South Sudan">South Sudan</option>
-                                                <option value="Spain">Spain</option>
-                                                <option value="Sri Lanka">Sri Lanka</option>
-                                                <option value="Sudan">Sudan</option>
-                                                <option value="Suriname">Suriname</option>
-                                                <option value="Sweden">Sweden</option>
-                                                <option value="Switzerland">Switzerland</option>
-                                                <option value="Syria">Syria</option>
-                                                <option value="Taiwan">Taiwan</option>
-                                                <option value="Tajikistan">Tajikistan</option>
-                                                <option value="Tanzania">Tanzania</option>
-                                                <option value="Thailand">Thailand</option>
-                                                <option value="Timor-Leste">Timor-Leste</option>
-                                                <option value="Togo">Togo</option>
-                                                <option value="Tonga">Tonga</option>
-                                                <option value="Trinidad and Tobago">Trinidad and Tobago</option>
-                                                <option value="Tunisia">Tunisia</option>
-                                                <option value="Turkey">Turkey</option>
-                                                <option value="Turkmenistan">Turkmenistan</option>
-                                                <option value="Tuvalu">Tuvalu</option>
-                                                <option value="Uganda">Uganda</option>
-                                                <option value="Ukraine">Ukraine</option>
-                                                <option value="United Arab Emirates">United Arab Emirates</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="United States">United States</option>
-                                                <option value="Uruguay">Uruguay</option>
-                                                <option value="Uzbekistan">Uzbekistan</option>
-                                                <option value="Vanuatu">Vanuatu</option>
-                                                <option value="Vatican City">Vatican City</option>
-                                                <option value="Venezuela">Venezuela</option>
-                                                <option value="Vietnam">Vietnam</option>
-                                                <option value="Yemen">Yemen</option>
-                                                <option value="Zambia">Zambia</option>
-                                                <option value="Zimbabwe">Zimbabwe</option>
+                                            <label>Nationalité</label>
+                                            <select class="form-control country-select" name="nationalite" style="width: 100%;">
+                                                <option value="" disabled {{ old('nationalite') == '' ? 'selected' : '' }}>Select a country</option>
+                                                <option value="Afghanistan" {{ old('nationalite') == 'Afghanistan' ? 'selected' : '' }}>Afghanistan</option>
+                                                <option value="Zambia" {{ old('nationalite') == 'Zambia' ? 'selected' : '' }}>Zambia</option>
+                                                <option value="Zimbabwe" {{ old('nationalite') == 'Zimbabwe' ? 'selected' : '' }}>Zimbabwe</option>
                                             </select>
+                                            @error('nationalite')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
 
+                                        <!-- Ville -->
                                         <div class="form-group">
                                             <label>Ville</label>
                                             <div>
-                                                <input type="text" name="ville" class="form-control" required parsley-type=""
-                                                    placeholder="Quelle ville ?" />
+                                                <input type="text" name="ville" class="form-control" value="{{ old('ville') }}" required placeholder="Quelle ville ?" />
+                                                @error('ville')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
 
+                                        <!-- Commune -->
                                         <div class="form-group">
                                             <label>Commune</label>
                                             <div>
-                                                <input type="text" name="commune" class="form-control" required parsley-type=""
-                                                    placeholder="Quelle commune ?" />
+                                                <input type="text" name="commune" class="form-control" value="{{ old('commune') }}" required placeholder="Quelle commune ?" />
+                                                @error('commune')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
 
-
+                                        <!-- Adresse -->
                                         <div class="form-group">
                                             <label>Adresse</label>
                                             <div>
-                                                <textarea required class="form-control" name="adresse" rows="3"></textarea>
+                                                <textarea required class="form-control" name="adresse" rows="3">{{ old('adresse') }}</textarea>
+                                                @error('adresse')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
                                             </div>
                                         </div>
+
+                                        <!-- Boutons -->
                                         <div class="form-group">
                                             <div>
-                                                <button type="submit" class="btn btn-primary waves-effect waves-light"
-                                                id="submitButton">
-                                                    Enregistrer
-                                                </button>
-                                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
-                                                    Annuler
-                                                </button>
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Enregistrer</button>
+                                                <button type="reset" class="btn btn-secondary waves-effect m-l-5">Annuler</button>
                                             </div>
                                         </div>
                                     </form>
+
+
+
                                 </div>
 
 

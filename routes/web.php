@@ -7,7 +7,7 @@ use App\Models\Adresse;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 
@@ -48,6 +48,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+    Route::get('/dashboard', [AgentController::class, 'index'])->name('dashboard');
     Route::get('/agents', [AgentController::class, 'index'])->name('agent.index');
     Route::get('/agent_create', [AgentController::class, 'create'])->name('agent.create');
     Route::get('/agent/{id}', [AgentController::class, 'show'])->name('agent.show');
@@ -55,16 +56,7 @@ Route::middleware([
     Route::post('/agent/store', [AgentController::class, 'store'])->name('agent.store');
     Route::post('/agent/update', [AgentController::class, 'update'])->name('agent.update');
     Route::delete('/agent/delete', [AgentController::class, 'destroy'])->name('agent.destroy');
-
+    Route::post('/agent/{id}/update-profile-photo', [AgentController::class, 'updateProfilePhoto'])->name('agent.updateProfilePhoto');
 });
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
